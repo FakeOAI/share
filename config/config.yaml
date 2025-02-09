@@ -1,0 +1,19 @@
+server:
+  domain: example.com # 项目域名
+  address: :8000 # 项目http端口
+  httpsAddr: :443 # 项目https端口
+  httpsCertPath: keys/ssl.pem # ssl证书公钥地址
+  httpsKeyPath: keys/ssl.key # ssl证书私钥地址
+  logPath: logs
+  logStdout: false
+
+database:
+  default:
+    link: mysql:root:123456@tcp(localhost:3306)/share?loc=Local&parseTime=true
+    charset: utf8mb4
+
+redis:
+  default:
+    address: localhost:6379
+    pass:
+    db: 0

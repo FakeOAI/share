@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  share:
+    image: fakeoai/share
+    container_name: share
+    restart: always
+    network_mode: 'host'
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./config:/app/config
+      - ./keys:/app/keys
+      - ./logs:/app/logs
+    labels:
+      - "com.centurylinklabs.watchtower.scope=fakeoai"
+
+  watch:
+    image: containrrr/watchtower
+    container_name: watch
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.docker/config.json:/config.json
+    command: --scope fakeoai --cleanup --interval 60
+    labels:
+      - "com.centurylinklabs.watchtower.scope=fakeoai"
