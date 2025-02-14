@@ -1,11 +1,17 @@
 server:
-  domain: example.com # 项目域名
   address: :8000 # 项目http端口
   httpsAddr: :443 # 项目https端口
   httpsCertPath: keys/ssl.pem # ssl证书公钥地址
   httpsKeyPath: keys/ssl.key # ssl证书私钥地址
   logPath: logs
   logStdout: false
+
+domain:
+  root: example.com # 项目域名
+  chatgpt: chat # chatgpt镜像三级域，默认为chat.example.com
+  client: # 客户端三级域，默认为example.com
+  admin: admin # 管理端三级域，默认为admin.example.com
+  webrtc: webrtc # chatgpt语音三级域，默认为webrtc.example.com
 
 database:
   default:
