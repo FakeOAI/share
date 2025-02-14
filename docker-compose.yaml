@@ -1,6 +1,30 @@
 version: '3'
 
 services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    command: --mysql-native-password=ON --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    network_mode: 'host'
+    volumes:
+      - ./data/mysql/:/var/lib/mysql/
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_DATABASE: 'share'
+
+  redis:
+    image: redis
+    container_name: redis
+    network_mode: 'host'
+    # command: --requirepass "123456" # redis库密码,不需要密码注释本行
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./data/redis/:/data/
+
   share:
     image: fakeoai/share
     container_name: share
@@ -13,7 +37,7 @@ services:
       - ./keys:/app/keys
       - ./logs:/app/logs
     labels:
-      - "com.centurylinklabs.watchtower.scope=fakeoai"
+      - 'com.centurylinklabs.watchtower.scope=fakeoai'
 
   watch:
     image: containrrr/watchtower
@@ -25,5 +49,3 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ~/.docker/config.json:/config.json
     command: --scope fakeoai --cleanup --interval 60
-    labels:
-      - "com.centurylinklabs.watchtower.scope=fakeoai"
