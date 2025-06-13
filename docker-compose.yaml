@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: tokens-mysql
+    command: --mysql-native-password=ON --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    volumes:
+      - ./data/mysql/:/var/lib/mysql/
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: 'fakeoai'
+      MYSQL_DATABASE: 'share'
+
+  redis:
+    image: redis
+    container_name: tokens-redis
+    command: --requirepass "fakeoai" # redis库密码,不需要密码注释本行
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./data/redis/:/data/
+
+  tokens:
+    image: fakeoai/share
+    container_name: tokens
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 1024:1024
+      # - 443:443 # 如果需要https，请取消注释本行
+    volumes:
+      - ./config:/app/config
+      - ./keys:/app/keys
+      - ./logs:/app/logs
+      - ./public/app/public
+    depends_on:
+      - redis
+      - mysql

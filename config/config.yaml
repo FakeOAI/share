@@ -1,0 +1,19 @@
+server:
+  adminPath: /admin
+  address: :1024 # 项目http端口
+  # httpsAddr: :443 # 项目https端口
+  # httpsCertPath: keys/ssl.pem # ssl证书公钥地址
+  # httpsKeyPath: keys/ssl.key # ssl证书私钥地址
+  logPath: logs
+  logStdout: false
+
+database:
+  default:
+    link: mysql:root:fakeoai@tcp(mysql:3306)/share?loc=Local&parseTime=true
+    charset: utf8mb4
+
+redis:
+  default:
+    address: redis:6379
+    pass: fakeoai
+    db: 0
