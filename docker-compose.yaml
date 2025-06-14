@@ -3,7 +3,7 @@ version: '3'
 services:
   mysql:
     image: mysql:8.0.37
-    container_name: tokens-mysql
+    container_name: share-mysql
     command: --mysql-native-password=ON --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     volumes:
@@ -15,7 +15,7 @@ services:
 
   redis:
     image: redis:7.4
-    container_name: tokens-redis
+    container_name: share-redis
     command: --requirepass "fakeoai" # redis库密码,不需要密码注释本行
     restart: always
     environment:
@@ -23,9 +23,9 @@ services:
     volumes:
       - ./data/redis/:/data/
 
-  tokens:
+  share:
     image: fakeoai/share
-    container_name: tokens
+    container_name: share
     restart: always
     environment:
       TZ: Asia/Shanghai
