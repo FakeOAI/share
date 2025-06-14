@@ -36,7 +36,7 @@ services:
       - ./config:/app/config
       - ./keys:/app/keys
       - ./logs:/app/logs
-      - ./public:app/public
+      - ./public:/app/public
     depends_on:
       - redis
       - mysql
