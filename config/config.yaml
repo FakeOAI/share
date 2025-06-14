@@ -9,11 +9,11 @@ server:
 
 database:
   default:
-    link: mysql:root:fakeoai@tcp(share-mysql:3306)/share?loc=Local&parseTime=true
+    link: mysql:root:fakeoai@tcp(mysql:3306)/share?loc=Local&parseTime=true
     charset: utf8mb4
 
 redis:
   default:
-    address: share-redis:6379
+    address: redis:6379
     pass: fakeoai
     db: 0
