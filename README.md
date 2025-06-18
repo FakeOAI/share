@@ -110,3 +110,35 @@ http://<你的IP>:<你的端口><后台前缀>
 - 开展分销或代理业务
 
 所有功能配置灵活，权限完全由您掌控。
+
+## 第三方模式
+
+此模式是为了让已有自己用户体系的第三方更方便的接入此程序而设计的
+
+1. 开启此模式需要再后台的服务配置中，把登录方式选择第三方模式
+
+   ![image](https://github.com/user-attachments/assets/03f833f9-cb81-4eb0-9d1e-3a04d0047ce8)
+
+   当开启此模式后，登录界面会变成要求输入 Token 的模式
+
+   ![image](https://github.com/user-attachments/assets/e1d9b110-871c-4ddc-91d4-06d6641634ab)
+
+2. 然后需要在第三方配置中配置 `OAuth地址`，登录接口接口在服务端会去把前端接收的 code 传递到此地址中，你需要按照如下格式进行响应
+
+   ```json
+   # GET "<OAUTH_URL>?code=xxx"
+   # 成功返回，响应码200，允许登录
+   {
+     "username": "用户唯一标识"
+   }
+   # 失败返回，响应码必须>=400，不允许登录
+   {
+     "detail": "失败报错，此报错会在前端进行显示"
+   }
+   ```
+  
+ 3. 根据自己的需求设置对话限速以及模型限速，如果不限制用户的用量使用可以忽略不设置
+    
+    ![image](https://github.com/user-attachments/assets/c2c29092-ee9c-45f5-9a68-90f937a2ce7d)
+
+
