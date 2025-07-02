@@ -34,4 +34,4 @@
 GET /client-api/login?code=xxx&redirect=true
 ```
 
-该接口在服务器中会去调用 `OAuth地址` 接口，如果成功会进行接口
+该接口在服务器中会去调用 `OAuth地址` 接口，如果第三方返回成功的响应，程序会重定向到镜像的首页

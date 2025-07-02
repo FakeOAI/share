@@ -7,23 +7,24 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: "首页", link: "/" },
-      { text: "开始接入", link: "/llm/prepare" },
+      { text: "开始接入", link: "/getting-started" },
       { text: "演示站", link: "https://share.yuanbao.dev" },
     ],
     sidebar: [
       { text: "项目预览", link: "/preview" },
       { text: "快速开始", link: "/getting-started" },
       { text: "第三方模式", link: "/thirdparty" },
-      {
-        text: "管理端",
-        base: "/admin/",
-        link: "accounts",
-        collapsed: false,
-        items: [
-          { text: "号池管理", link: "accounts" },
-          { text: "用户管理", link: "users" },
-        ],
-      },
+      { text: "外部脚本", link: "/external-script" },
+      // {
+      //   text: "管理端",
+      //   base: "/admin/",
+      //   link: "accounts",
+      //   collapsed: false,
+      //   items: [
+      //     { text: "号池管理", link: "accounts" },
+      //     { text: "用户管理", link: "users" },
+      //   ],
+      // },
     ],
     docFooter: {
       prev: "上一页",
