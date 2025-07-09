@@ -18,6 +18,7 @@
   ```js
   // 需要在external.js中给window对象添加__actions_config属性
   window.__actions_config = {
+    hidden: false, // 是否隐藏悬浮按钮，默认为false
     title: "弹窗标题",
     // actions是一个数组，且里面元素是每一个菜单的配置
     actions: [
