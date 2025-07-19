@@ -25,6 +25,7 @@ services:
 
   share:
     image: fakeoai/share
+    # image: fakeoai/share-thirdparty # 第三方模式镜像
     container_name: share
     restart: always
     environment:
