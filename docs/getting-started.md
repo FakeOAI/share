@@ -36,6 +36,29 @@ cd share
 - **`config/config.yaml`**：此文件包含平台的配置，你可以根据需求调整其中的参数。
 - **`docker-compose.yaml`**：该文件用于配置 Docker 容器设置。你可以根据实际情况调整端口、网络等信息。如果你不需要进行任何自定义，保持默认配置即可。
 
+值得注意的是，你需要根据你的业务模式在 `docker-compose.yaml` 中选择合适的模式，他们分别是 [账号密码模式](/password)、[第三方模式](/thirdparty)
+
+```yaml
+share:
+  image: fakeoai/share # 账号密码模式，二选一 // [!code focus]
+  image: fakeoai/share-thirdparty # 第三方模式镜像，二选一 // [!code focus]
+  container_name: share
+  restart: always
+  environment:
+    TZ: Asia/Shanghai
+  ports:
+    - 1024:1024
+    # - 443:443 # 如果需要https，请取消注释本行
+  volumes:
+    - ./config:/app/config
+    - ./keys:/app/keys
+    - ./logs:/app/logs
+    - ./public:/app/public
+  depends_on:
+    - redis
+    - mysql
+```
+
 ## 4. 运行一键部署脚本
 
 为了简化部署过程，Share 提供了一键部署脚本。运行以下命令以自动化完成部署：
@@ -51,7 +74,7 @@ cd share
 完成部署后，你可以在浏览器中访问以下地址，进入后台管理页面：
 
 ```
-http://<你的IP>:<你的端口>
+http://<你的IP>:<你的端口>/admin
 ```
 
 默认情况下，后台管理页面使用以下账号和密码进行登录：

@@ -13,6 +13,7 @@ export default defineConfig({
     sidebar: [
       { text: "项目预览", link: "/preview" },
       { text: "快速开始", link: "/getting-started" },
+      { text: "账号密码模式", link: "/password" },
       { text: "第三方模式", link: "/thirdparty" },
       { text: "外部脚本", link: "/external-script" },
       // {
